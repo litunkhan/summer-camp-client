@@ -1,9 +1,11 @@
-import  { useState } from 'react';
+import  { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logos from '../assets/695509_medical_512x512.png'
+import { AuthContext } from '../Pages/Firebase/Authprobider';
 function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const isLoggedIn = null
+  
+  const {user,logOut} = useContext(AuthContext)
   function toggleMenu() {
     setMenuOpen(!isMenuOpen);
   }
@@ -55,7 +57,8 @@ function Navbar() {
               isActive ? "text-blue-600" : "text-white"}>
                 Classes
               </NavLink>
-              {isLoggedIn ? (
+            
+              {user ? (
                 <>
                   <NavLink to="/dashboard" className={({ isActive}) =>
               isActive ? "text-blue-600" : "text-white"}>
@@ -63,8 +66,10 @@ function Navbar() {
                   </NavLink>
                   <div className="ml-4 flex items-center">
                     <div className="flex-shrink-0">
-                      <img className="h-8 w-8 rounded-full" src='' alt="User Profile" />
+                      <img className="h-8 w-8 rounded-full" src={user.photoURL} alt="User Profile" />
+                      
                     </div>
+                    <p onClick={()=>logOut()} className='text-white cursor-pointer'>LogOut</p>
                   </div>
                 </>
               ) : (
@@ -90,17 +95,29 @@ function Navbar() {
               isActive ? "text-blue-600" : "text-white"}>
             Classes
           </NavLink>
-          {isLoggedIn ? (
+          {
+            user&&(
+              <div className='flex mr-20 items-center'>
+                <img className='w-10 h-10 rounded-full' src={user.photoURL} alt="" />
+              </div>
+            )
+          }
+          {user ? (
+            <>
             <NavLink to="/dashboard" className={({ isActive}) =>
             isActive ? "text-blue-600" : "text-white"}>
               Dashboard
             </NavLink>
+            <p onClick={()=>logOut()} className='text-white cursor-pointer'>LogOut</p>
+            </>
           ) : (
-            <NavLink to="/login" className={({ isActive}) =>
+            <><NavLink to="/login" className={({ isActive}) =>
             isActive ? "text-blue-600" : "text-white"}>
               Login
             </NavLink>
+            </>
           )}
+         
         </div>
       </div>
     </nav>

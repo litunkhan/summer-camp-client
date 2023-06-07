@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/Authprobider";
 import {  updateProfile } from 'firebase/auth';
 
 const RegistrationPage = () => {
+  const [text,settext] = useState(true)
   const {signIn } = useContext(AuthContext)
   const navigate = useNavigate()
   const {
@@ -76,10 +77,12 @@ const RegistrationPage = () => {
                 minLength: 6,
                 pattern: /(?=.*[A-Z])(?=.*\W)/,
               })}
-              type="password"
+              type={text?"password":"text"}
               id="password"
               className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
-            />
+            /><i onClick={()=>{
+               settext(!text)
+            }} className="fa-solid fa-eye"></i>
             {errors.password && (
               <p className="text-red-500 text-sm">
                 Password must be at least 6 characters long and contain a capital letter and a special character

@@ -1,12 +1,29 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Firebase/Authprobider";
+import { useContext, useState } from "react";
+import Swal from 'sweetalert2'
 const LoginPage = () => {
+  const [text,settext] = useState(true)
   const { register, handleSubmit } = useForm();
+  const {LoginIn} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
     // Handle login logic here
     console.log(data);
+    LoginIn(data.email,data.password)
+    .then(res=>{
+      console.log(res.user)
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'LogIn Successfull ',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      navigate('/')
+    })
   };
 
   return (
@@ -33,11 +50,14 @@ const LoginPage = () => {
             </label>
             <input
               {...register("password")}
-              type="password"
+              type={text?"password":"text"}
               id="password"
               className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
               required
             />
+            <i onClick={()=>{
+               settext(!text)
+            }} className="fa-solid fa-eye"></i>
           </div>
 
           <div className="mb-4">

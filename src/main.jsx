@@ -11,6 +11,7 @@ import Instructors from './Pages/Instructors/Instructors.jsx';
 import LoginPage from './Pages/Login/Login.jsx';
 import Registration from './Pages/SignUp/Registration.jsx';
 import Authprobider from './Pages/Firebase/Authprobider.jsx';
+import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path:'/registration',
         element:<Registration></Registration>
+      },
+      {
+        path:'/dashboard',
+        element: <Dashboard></Dashboard>
       }
     ]
   },
