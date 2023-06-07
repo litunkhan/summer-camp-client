@@ -7,10 +7,15 @@ const App = () => {
   return (
     <div className="max-w-[1200px] mx-auto">
       <Navbar></Navbar>
-      <div className="min-h-[28.1vh]">
+      
+      <div>
       <Outlet></Outlet>
       </div>
+      <div>
       <Footer></Footer>
+      </div>
+      
+     
     </div>
   );
 };
