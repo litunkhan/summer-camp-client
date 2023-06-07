@@ -87,6 +87,23 @@ const RegistrationPage = () => {
               <p className="text-red-500 text-sm">Passwords do not match</p>
             )}
           </div>
+          {/* images url part  */}
+          <div className="mb-4">
+            <label htmlFor="image" className="block mb-2 font-medium">
+              Confirm Password
+            </label>
+            <input
+              {...register("image", {
+                required: true,
+                validate: (value) =>
+                  value === document.getElementById("image").value,
+              })}
+              type="url"
+              id="image"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+            />
+           
+          </div>
 
           <div className="mb-6">
             <button
