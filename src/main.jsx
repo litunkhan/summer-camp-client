@@ -10,6 +10,7 @@ import Home from './Pages/Home/Homes/Home.jsx';
 import Instructors from './Pages/Instructors/Instructors.jsx';
 import LoginPage from './Pages/Login/Login.jsx';
 import Registration from './Pages/SignUp/Registration.jsx';
+import Authprobider from './Pages/Firebase/Authprobider.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+   <Authprobider>
    <RouterProvider router={router} />
+   </Authprobider>
   </React.StrictMode>,
 )

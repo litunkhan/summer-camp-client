@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Firebase/Authprobider";
+import {  updateProfile } from 'firebase/auth';
 
 const RegistrationPage = () => {
+  const {signIn } = useContext(AuthContext)
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -11,6 +16,19 @@ const RegistrationPage = () => {
   const onSubmit = (data) => {
     // Handle registration logic here
     console.log(data);
+    signIn(data.email,data.password)
+        .then(res=>{
+            console.log(res.user)
+             navigate('/login')
+            updateProfile(res.user,{displayName:data.name,photoURL:data.image})
+            .then(()=>{
+              
+           })
+           
+       })
+       .catch(err=>{
+          console.log(err.message)
+       })
   };
 
   return (
@@ -90,7 +108,7 @@ const RegistrationPage = () => {
           {/* images url part  */}
           <div className="mb-4">
             <label htmlFor="image" className="block mb-2 font-medium">
-              Confirm Password
+              image
             </label>
             <input
               {...register("image", {
