@@ -19,6 +19,8 @@ import {
 } from '@tanstack/react-query'
 import Alluser from './Pages/Dashboard/AdminDashboard/Alluser.jsx';
 import Classes from './Pages/Dashboard/AdminDashboard/Classes.jsx';
+import AddClassForm from './Pages/Dashboard/Instactor/Addclass.jsx';
+import Myclass from './Pages/Dashboard/Instactor/Myclass.jsx';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
           {
             path:'classes',
             element:<Classes></Classes>
+          },
+          {
+            path:'addclass',
+            element:<AddClassForm></AddClassForm>
+          },
+          {
+            path:'myclass',
+            element:<Myclass></Myclass>
           }
         ]
       }
