@@ -12,6 +12,7 @@ import LoginPage from './Pages/Login/Login.jsx';
 import Registration from './Pages/SignUp/Registration.jsx';
 import Authprobider from './Pages/Firebase/Authprobider.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
+import Privateroute from './Pages/PrivateRoute/Privateroute.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/dashboard',
-        element: <Dashboard></Dashboard>
+        element: <Privateroute><Dashboard></Dashboard></Privateroute>
       }
     ]
   },

@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/Authprobider";
 import { useContext, useState } from "react";
 import Swal from 'sweetalert2'
 const LoginPage = () => {
   const [text,settext] = useState(true)
   const { register, handleSubmit } = useForm();
-  const {LoginIn} = useContext(AuthContext)
+  const {LoginIn,googleLogin} = useContext(AuthContext)
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
 
   const onSubmit = (data) => {
     // Handle login logic here
@@ -22,9 +24,17 @@ const LoginPage = () => {
         showConfirmButton: false,
         timer: 1500
       })
-      navigate('/')
+      navigate(from,{replace:true})
     })
   };
+
+  const googleLoginhandle = ()=>{
+    googleLogin()
+    .then(res=>{
+       console.log(res.user)
+       navigate(from,{replace:true})
+    })
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -84,7 +94,9 @@ const LoginPage = () => {
 
         <div className="text-center mb-4">
           <h3 className="text-lg font-medium">Or login with:</h3>
-          <button className="mt-4 bg-red-500 text-white py-2 px-4 rounded focus:outline-none hover:bg-red-600">
+          <button 
+           onClick={googleLoginhandle}
+           className="mt-4 bg-red-500 text-white py-2 px-4 rounded focus:outline-none hover:bg-red-600">
             Google
           </button>
         </div>
