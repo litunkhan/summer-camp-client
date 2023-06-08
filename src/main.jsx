@@ -13,6 +13,14 @@ import Registration from './Pages/SignUp/Registration.jsx';
 import Authprobider from './Pages/Firebase/Authprobider.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 import Privateroute from './Pages/PrivateRoute/Privateroute.jsx';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import Alluser from './Pages/Dashboard/AdminDashboard/Alluser.jsx';
+import Classes from './Pages/Dashboard/AdminDashboard/Classes.jsx';
+const queryClient = new QueryClient()
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +44,17 @@ const router = createBrowserRouter([
       },
       {
         path:'/dashboard',
-        element: <Privateroute><Dashboard></Dashboard></Privateroute>
+        element: <Privateroute><Dashboard></Dashboard></Privateroute>,
+        children:[
+          {
+            path:'alluser',
+            element:<Alluser></Alluser>
+          },
+          {
+            path:'classes',
+            element:<Classes></Classes>
+          }
+        ]
       }
     ]
   },
@@ -45,7 +63,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
    <Authprobider>
+   <QueryClientProvider client={queryClient}>
    <RouterProvider router={router} />
+   </QueryClientProvider>
    </Authprobider>
   </React.StrictMode>,
 )

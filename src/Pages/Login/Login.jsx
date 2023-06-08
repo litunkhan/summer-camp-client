@@ -31,9 +31,25 @@ const LoginPage = () => {
   const googleLoginhandle = ()=>{
     googleLogin()
     .then(res=>{
-       console.log(res.user)
-       navigate(from,{replace:true})
-    })
+      const logedInUser = res.user
+const saveUser = {name:logedInUser.displayName,email:logedInUser.email,image:logedInUser.photoURL}
+      fetch(`${import.meta.env.VITE_URL}/user`,{
+              method:'POST',
+              headers:{
+               'Content-Type':'application/json'
+              },
+              body:JSON.stringify(saveUser)
+            })
+            .then(res=>res.json())
+            .then(()=>{
+              
+             navigate(from,{replace:true})
+              
+            })
+
+            navigate(from,{replace:true})
+      
+   })
   }
 
   return (

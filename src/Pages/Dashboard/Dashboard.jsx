@@ -1,10 +1,25 @@
 
-
+import {Link, Outlet} from 'react-router-dom'
 const Dashboard = () => {
+    const Admin = true 
     return (
-        <div>
-            <p>Dash board</p>
-        </div>
+        <>
+           {
+            Admin&&(
+                <>
+                <div className='flex gap-4'>
+                    <Link to={'alluser'}>
+                         manage-users
+                    </Link>
+                    <Link to={'classes'}>
+                         manage-classes
+                    </Link>
+                </div>
+                <Outlet></Outlet>
+                </>
+            )
+           }
+        </>
     );
 };
 
