@@ -1,4 +1,5 @@
 
+import Banner from './Banner';
 import Slider from './Slider'
 const Home = () => {
     return (
@@ -7,7 +8,7 @@ const Home = () => {
           <div className='my-12'>
           <Slider></Slider>
           </div>
-           
+           <Banner></Banner>
         </div>
     );
 };
