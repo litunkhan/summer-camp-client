@@ -10,7 +10,7 @@ const Instructors = () => {
             const instactor = datas.filter(instactor=>instactor.role==='instactor')
             setInstactors(instactor)
         })
-    })
+    },[])
     return (
         <div>
             <h3 className="my-4 text-2xl text-center">Our instactors</h3>

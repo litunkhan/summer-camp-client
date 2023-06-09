@@ -1,9 +1,10 @@
 import { useContext } from "react";
+import axios from 'axios';
 import { AuthContext } from '../../Firebase/Authprobider' 
-
+import Swal from "sweetalert2";
 const AddClassForm = () => {
     const {user} = useContext(AuthContext)
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         
       e.preventDefault();
      const form = e.target
@@ -24,7 +25,27 @@ const AddClassForm = () => {
 
 
      }
-     console.log(addclass)
+     
+     try {
+      const response = await axios.post(`${import.meta.env.VITE_URL}/allclass`, {
+        data: addclass,
+      });
+  
+      if(response.data.insertedId){
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: `Added an class successfull`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } // Handle the response data here
+    } catch (error) {
+      console.error(error); // Handle the error here
+    }
+  
+
+     
     };
   
     return (

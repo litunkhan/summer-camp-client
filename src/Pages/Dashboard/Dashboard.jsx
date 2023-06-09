@@ -1,8 +1,8 @@
 
 import {Link, Outlet} from 'react-router-dom'
 const Dashboard = () => {
-    const Admin = true
-    const instactor = false
+    const Admin = false
+    const instactor = true
     return (
         <>
            {
