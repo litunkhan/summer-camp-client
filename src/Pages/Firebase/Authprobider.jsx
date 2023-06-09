@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged,createUserWithEmailAndPassword,signInWithEm
 
 import Swal from 'sweetalert2'
 import app from './Firebase.config';
+import axios from 'axios';
 
 
 export const AuthContext = createContext()
@@ -34,12 +35,28 @@ const Authprobider = ({children}) => {
           const unSubcribe =onAuthStateChanged(auth, (user) => {
             
              setuser(user)
-             setloader(false)
+           
+
+
+             if(user){
+               axios.post(`${import.meta.env.VITE_URL}/jwt` ,{
+                 email:user.email
+               }).then(data =>{
+                 
+                 console.log(data.data.token);
+                 localStorage.setItem("access-token",data.data.token)
+                 setloader(false);
+               })
+              }
+              else{
+               localStorage.removeItem("access-token");
+              }
 });
           return ()=>{
            return  unSubcribe()
           }
     },[auth])
+
     const logOut = ()=>{
       setloader(true)
      return signOut(auth).then(() => {
