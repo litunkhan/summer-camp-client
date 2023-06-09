@@ -8,7 +8,7 @@ const App = () => {
     <div className="max-w-[1200px] mx-auto">
       <Navbar></Navbar>
       
-      <div>
+      <div className="min-h-[40vh]">
       <Outlet></Outlet>
       </div>
       <div>
