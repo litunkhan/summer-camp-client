@@ -1,5 +1,6 @@
 
 import Banner from './Banner';
+import HomeInstractor from './HomeInstractor';
 import Slider from './Slider'
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
           <Slider></Slider>
           </div>
            <Banner></Banner>
+           <HomeInstractor></HomeInstractor>
         </div>
     );
 };

@@ -1,14 +1,18 @@
 
 import {Link, Outlet} from 'react-router-dom'
+import useAdmin from './Hook/useAdmin';
+import useInstructor from './Hook/useInstactor';
 const Dashboard = () => {
-    const Admin = false
-    const instactor = true
+    // const Admin = false
+    // const instactor = true
+    const [admin] = useAdmin()
+    const [instactor] = useInstructor()
     return (
         <>
            {
            
                 <>
-                {Admin&&(
+                {admin&&(
                     <div className='flex gap-4'>
                     <Link to={'alluser'}>
                          manage-users

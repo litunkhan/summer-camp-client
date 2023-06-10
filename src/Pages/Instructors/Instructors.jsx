@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 const Instructors = () => {
     const [instactors,setInstactors] = useState([])
     useEffect(()=>{
-        fetch(`${import.meta.env.VITE_URL}/getusers`)
+        fetch(`${import.meta.env.VITE_URL}/instructor`)
         .then(res=> res.json())
         .then(datas=>{
-            const instactor = datas.filter(instactor=>instactor.role==='instactor')
-            setInstactors(instactor)
+            // const instactor = datas.filter(instactor=>instactor.role==='instactor')
+            setInstactors(datas)
         })
     },[])
     return (
@@ -25,7 +25,7 @@ const Instructors = () => {
         </thead>
         <tbody>
           {instactors.map((item) => (
-            <tr key={item.id}>
+            <tr key={item._id}>
               <td className="border px-4 py-2">
                 <img src={item.image} alt="Profile" className="w-12 h-12 rounded-full" />
               </td>
