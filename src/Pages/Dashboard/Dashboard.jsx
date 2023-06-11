@@ -34,6 +34,24 @@ const Dashboard = () => {
                 </div>
                     )
                 }
+                {
+                    !admin && !instactor&&(
+                        <div className='flex gap-4'>
+                        <Link to={'selectedclass'}>
+                             Selected-class
+                        </Link>
+                        <Link to={'enrollclass'}>
+                             Enroll-Class
+                        </Link>
+                        <Link to={'payment'}>
+                             Payment
+                        </Link>
+                        <Link to={'paymenthistory'}>
+                             Payment-history
+                        </Link>
+                    </div>
+                    )
+                }
                 <Outlet></Outlet>
                 </>
             
