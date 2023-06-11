@@ -25,13 +25,21 @@ console.log(data)})
   }
 
   const selectClass =(myClass) =>{
-    const selectedClass = {...myClass,email:user.email}
+    const allClass = {
+      classname:myClass.data.classname,
+      classimage:myClass.data.classimage,
+     instactorname: myClass.data.instactorname,
+      seats: myClass.data.seats,
+      price:myClass.data.price,
+      studentemail: user.email,
+    };
+    // const selectedClass = {...myClass,email:user.email}
         fetch(`${import.meta.env.VITE_URL}/selectclass`, {
           method: "POST",
           headers: {
             "content-type": "application/json",
           },
-          body: JSON.stringify(selectedClass),
+          body: JSON.stringify(allClass),
         })
           .then((res) => res.json())
           .then((data) => {
@@ -40,7 +48,7 @@ console.log(data)})
             }
             console.log(data);
           });
-        console.log(selectedClass)
+        console.log(allClass)
       }
     return (
       <>

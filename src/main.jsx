@@ -23,6 +23,7 @@ import AddClassForm from './Pages/Dashboard/Instactor/Addclass.jsx';
 import Myclass from './Pages/Dashboard/Instactor/Myclass.jsx';
 import Selectedclass from './Pages/Dashboard/Student/Selectedclass.jsx';
 import HomeClasses from './Pages/Home/Homes/HomeClasses.jsx';
+import Payment from './Pages/Dashboard/Student/Payment.jsx';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
           {
             path:'selectedclass',
             element:<Selectedclass></Selectedclass>
+          },
+          {
+            path:'payment',
+            element:<Payment></Payment>
           }
         ]
       }
