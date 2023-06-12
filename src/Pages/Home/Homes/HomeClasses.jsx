@@ -31,7 +31,7 @@ console.log(data)})
      instactorname: myClass.data.instactorname,
       seats: myClass.data.seats,
       price:myClass.data.price,
-      studentemail: user.email,
+      studentemail: user?.email,
     };
     // const selectedClass = {...myClass,email:user.email}
         fetch(`${import.meta.env.VITE_URL}/selectclass`, {
