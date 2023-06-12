@@ -2,6 +2,8 @@
 import {Link, Outlet} from 'react-router-dom'
 import useAdmin from './Hook/useAdmin';
 import useInstructor from './Hook/useInstactor';
+import { Fade } from 'react-awesome-reveal';
+
 const Dashboard = () => {
     // const Admin = false
     // const instactor = true
@@ -13,7 +15,8 @@ const Dashboard = () => {
            
                 <>
                 {admin&&(
-                    <div className='flex gap-4'>
+                   <Fade cascade damping={0.1}>
+                      <div className='flex gap-4'>
                     <Link to={'alluser'}>
                          manage-users
                     </Link>
@@ -21,9 +24,11 @@ const Dashboard = () => {
                          manage-classes
                     </Link>
                 </div>
+                   </Fade>
                 )}
                 {
                     instactor&&(
+                         <Fade cascade damping={0.1}>
                         <div className='flex gap-4'>
                     <Link to={'addclass'}>
                          Add class
@@ -31,11 +36,13 @@ const Dashboard = () => {
                     <Link to={'myclass'}>
                          my class
                     </Link>
-                </div>
+                       </div>
+                       </Fade>
                     )
                 }
                 {
                     !admin && !instactor&&(
+                         <Fade cascade damping={0.1}>
                         <div className='flex gap-4'>
                         <Link to={'selectedclass'}>
                              Selected-class
@@ -50,6 +57,7 @@ const Dashboard = () => {
                              Payment-history
                         </Link>
                     </div>
+                    </Fade>
                     )
                 }
                 <Outlet></Outlet>
