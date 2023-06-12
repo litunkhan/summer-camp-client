@@ -24,6 +24,7 @@ import Myclass from './Pages/Dashboard/Instactor/Myclass.jsx';
 import Selectedclass from './Pages/Dashboard/Student/Selectedclass.jsx';
 import HomeClasses from './Pages/Home/Homes/HomeClasses.jsx';
 import Payment from './Pages/Dashboard/Student/Payment.jsx';
+import Errorpage from './Pages/Errorpage/Errorpage.jsx';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path:'*',
+    element:<Errorpage></Errorpage>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
